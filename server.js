@@ -28,6 +28,7 @@ const io = new Server(server, {
   cors: '*', // allow connection from any origin
 });
 
+
 const rooms = new Map();
 
 function removeDuplicatesByRoomId(arr) {
