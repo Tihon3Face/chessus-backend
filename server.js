@@ -3,7 +3,7 @@ const express = require('express');
 const { Server } = require("socket.io");
 const { v4: uuidV4 } = require('uuid');
 const http = require('http');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const port = process.env.PORT || 8080;
 const User = require('./models/User.js')
 const bcrypt = require('bcryptjs');
@@ -375,7 +375,7 @@ app.post('/sign-in', async (req, res) => {
 
 async function start () {
   try {
-      await mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/backup_db");
+      // await mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/backup_db");
       server.listen(port, () => console.log(`listening on *:${port}`))
   }catch (e) {
       console.log('sth wrong',e.message)
