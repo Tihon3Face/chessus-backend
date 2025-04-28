@@ -17,11 +17,6 @@ const server = http.createServer(app);
 app.use(express.json());
 // set port to value received from environment variable or 8080 if null
 
-app.use(cors({
-  origin: 'http://localhost:3000', // Разрешаем доступ только с localhost:3000
-  methods: ['GET', 'POST'], // Разрешаем только эти методы
-  allowedHeaders: ['Content-Type'] // Разрешаем только эти заголовки
-}));
 
 // upgrade http server to websocket server
 const io = new Server(server, {
@@ -372,6 +367,13 @@ app.post('/sign-in', async (req, res) => {
     res.status(500).json('Ошибка сервера')
   }
 });
+
+
+setInterval(() => {
+  http.get('https://comebackend-1.onrender.com', (res) => {
+    console.log(`Пинг отправлен, статус: ${res.statusCode}`);
+  });
+}, 5 * 60 * 1000); // 5 минут
 
 
 async function start () {
